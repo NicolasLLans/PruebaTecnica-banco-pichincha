@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { RegistrationFormService } from 'src/app/services/registration-form.service';
 
 @Component({
   selector: 'app-registration-form',
@@ -30,7 +31,7 @@ export class RegistrationFormComponent {
     fechaRevision: [null, [Validators.required]],
   });
 
-  constructor(private fb: FormBuilder, private router: Router) {}
+  constructor(private fb: FormBuilder, private router: Router, private resFormService : RegistrationFormService) {}
 
   ngOnInit(): void {}
 
@@ -61,6 +62,7 @@ export class RegistrationFormComponent {
   submitForm() {
     if (this.registerForm.valid) {
       console.log('LLamar al servicio de registro');
+      this.resFormService.postData(this.registerForm.value)
       this.router.navigateByUrl('');
       this.registerForm.reset();
     } else {
