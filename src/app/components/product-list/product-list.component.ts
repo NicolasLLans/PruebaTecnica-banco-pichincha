@@ -10,12 +10,13 @@ import { ProductService } from 'src/app/services/product.service';
 export class ProductListComponent implements OnInit {
   product: any;
   filterValue = '';
+  recordsPerPage = 5;
   constructor(private productService: ProductService, private router: Router) {}
 
   ngOnInit(): void {
     this.productService.getData().subscribe({
       next: (productData) => {
-        this.product = productData;
+        this.product = productData || [];
       },
       error: (errorData) => {
         console.log(errorData);
@@ -27,10 +28,14 @@ export class ProductListComponent implements OnInit {
   }
 
   handlerSearch(value: string) {
-    this.filterValue = value
+    this.filterValue = value;
   }
 
   openForm() {
     this.router.navigateByUrl('/register');
+  }
+
+  changeRecordsPerPage(event: any) {
+    this.recordsPerPage = +event.target.value;
   }
 }
