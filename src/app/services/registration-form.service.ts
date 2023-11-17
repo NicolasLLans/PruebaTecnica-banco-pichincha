@@ -12,7 +12,7 @@ export class RegistrationFormService {
   public backUrl: string =
     'https://tribu-ti-staffing-desarrollo-afangwbmcrhucqfh.z01.azurefd.net/ipf-msa-productosfinancieros/';
 
-  public postData(product:Product): Observable<any> {
+  public postData(product:any): Observable<any> {
     // Definir el encabezado con el Authorization
     const headers = new HttpHeaders({
       authorID: '300',

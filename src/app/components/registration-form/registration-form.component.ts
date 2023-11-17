@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ProductService } from 'src/app/services/product.service';
 import { RegistrationFormService } from 'src/app/services/registration-form.service';
 
 @Component({
@@ -14,11 +15,11 @@ export class RegistrationFormComponent {
       '',
       [Validators.required, Validators.minLength(3), Validators.maxLength(10)],
     ],
-    nombre: [
+    name: [
       '',
       [Validators.required, Validators.minLength(5), Validators.maxLength(10)],
     ],
-    descripcion: [
+    description: [
       '',
       [
         Validators.required,
@@ -27,11 +28,16 @@ export class RegistrationFormComponent {
       ],
     ],
     logo: ['', [Validators.required]],
-    fechaLiberacion: [null, [Validators.required]],
-    fechaRevision: [null, [Validators.required]],
+    date_release: [null, [Validators.required]],
+    date_revision: [null, [Validators.required]],
   });
 
-  constructor(private fb: FormBuilder, private router: Router, private resFormService : RegistrationFormService) {}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private resFormService: RegistrationFormService,
+    private productService: ProductService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -39,32 +45,49 @@ export class RegistrationFormComponent {
     return this.registerForm.controls.id;
   }
 
-  get nombre() {
-    return this.registerForm.controls.nombre;
+  get name() {
+    return this.registerForm.controls.name;
   }
 
-  get descripcion() {
-    return this.registerForm.controls.descripcion;
+  get description() {
+    return this.registerForm.controls.description;
   }
 
   get logo() {
     return this.registerForm.controls.logo;
   }
 
-  get fechaLiberacion() {
-    return this.registerForm.controls.fechaLiberacion;
+  get date_release() {
+    return this.registerForm.controls.date_release;
   }
 
-  get fechaRevision() {
-    return this.registerForm.controls.fechaRevision;
+  get date_revision() {
+    return this.registerForm.controls.date_revision;
   }
 
   submitForm() {
     if (this.registerForm.valid) {
       console.log('LLamar al servicio de registro');
-      this.resFormService.postData(this.registerForm.value)
-      this.router.navigateByUrl('');
-      this.registerForm.reset();
+      this.resFormService
+        .postData(this.registerForm.value)
+        .subscribe((response) => {
+          console.log('Operación completada con éxito', response);
+        
+        // Después de agregar un nuevo producto, notificar a los suscriptores
+        this.productService.getData().subscribe({
+          next: (productData) => {
+            this.productService.productDataSubject.next(productData || []);
+          },
+          error: (errorData) => {
+            console.log(errorData);
+          },
+          complete: () => {
+            console.log('Notificación completa');
+          },
+        });
+          this.router.navigateByUrl('');
+          this.registerForm.reset();
+        });
     } else {
       alert('error al ingesar los datos');
       this.registerForm.markAllAsTouched();

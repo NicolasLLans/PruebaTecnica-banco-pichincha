@@ -1,18 +1,22 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, throwError } from 'rxjs';
 import { Product } from '../models/product';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
+
+  public productDataSubject = new BehaviorSubject<any[]>([]);
+  productData$ = this.productDataSubject.asObservable();
+
   constructor(private http: HttpClient) {}
 
   public backUrl: string =
     'https://tribu-ti-staffing-desarrollo-afangwbmcrhucqfh.z01.azurefd.net/ipf-msa-productosfinancieros/';
 
-  getData(): Observable<Product> {
+  getData(): Observable<any> {
     // Definir el encabezado con el Authorization
     const headers = new HttpHeaders({
       authorID: '300',
