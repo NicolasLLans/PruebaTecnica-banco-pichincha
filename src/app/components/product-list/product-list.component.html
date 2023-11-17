@@ -1,12 +1,7 @@
 <main>
   <div class="container">
     <header>
-      <input
-        type="search"
-        name="search"
-        id="search-bar"
-        placeholder="search..."
-      />
+      <app-search (search)="handlerSearch($event)"></app-search>
       <button type="button" (click)="openForm()">Agregar</button>
     </header>
     <div class="body-main">
@@ -31,7 +26,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let p of product">
+            <tr *ngFor="let p of product | search:filterValue">
               <td><img [src]="p.logo" alt="logo" width="100px" /></td>
               <td>{{p.name}}</td>
               <td>{{p.description}}</td>

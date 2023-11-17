@@ -1,0 +1,8 @@
+#search-bar {
+  border: solid 1px #929292;
+  border-radius: 10px;
+  padding: 0 6px;
+  min-width: 9rem;
+  margin: 6px 0;
+  height: 100%;
+}

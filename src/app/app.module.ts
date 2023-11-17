@@ -9,6 +9,8 @@ import { HeaderComponent } from './shared/header/header.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { RegistrationFormComponent } from './components/registration-form/registration-form.component';
+import { SearchComponent } from './components/search/search.component';
+import { SearchPipe } from './pipes/search.pipe';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { RegistrationFormComponent } from './components/registration-form/regist
     HeaderComponent,
     DashboardComponent,
     ProductListComponent,
-    RegistrationFormComponent
+    RegistrationFormComponent,
+    SearchComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,

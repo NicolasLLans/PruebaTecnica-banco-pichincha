@@ -5,29 +5,32 @@ import { ProductService } from 'src/app/services/product.service';
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+  styleUrls: ['./product-list.component.css'],
 })
-export class ProductListComponent implements OnInit{
-
-  product:any;
-  constructor(private productService : ProductService , private router:Router){}
+export class ProductListComponent implements OnInit {
+  product: any;
+  filterValue = '';
+  constructor(private productService: ProductService, private router: Router) {}
 
   ngOnInit(): void {
-      this.productService.getData().subscribe({
-        next: (productData) => {
-          this.product = productData
-          console.log(this.product)
-        },
-        error: (errorData) => {
-          console.log(errorData);
-        },
-        complete: () => {
-          console.log("Complete")
-        }
-      })
+    this.productService.getData().subscribe({
+      next: (productData) => {
+        this.product = productData;
+      },
+      error: (errorData) => {
+        console.log(errorData);
+      },
+      complete: () => {
+        console.log('Complete');
+      },
+    });
   }
 
-  openForm(){
+  handlerSearch(value: string) {
+    this.filterValue = value
+  }
+
+  openForm() {
     this.router.navigateByUrl('/register');
   }
 }
