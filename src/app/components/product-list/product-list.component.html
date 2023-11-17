@@ -1,0 +1,59 @@
+<main>
+  <div class="container">
+    <header>
+      <input
+        type="search"
+        name="search"
+        id="search-bar"
+        placeholder="search..."
+      />
+      <button type="button" (click)="openForm()">Agregar</button>
+    </header>
+    <div class="body-main">
+      <section>
+        <table>
+          <thead>
+            <tr>
+              <th id="title-logo">Logo</th>
+              <th>Nombre del producto</th>
+              <th>
+                Descripción <i><img src="../assets/svg/info.svg" alt="" /></i>
+              </th>
+              <th>
+                Fecha de liberación
+                <i><img src="../assets/svg/info.svg" alt="" /></i>
+              </th>
+              <th>
+                Fecha de restauración
+                <i><img src="../assets/svg/info.svg" alt="" /></i>
+              </th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let p of product">
+              <td><img [src]="p.logo" alt="logo" width="100px" /></td>
+              <td>{{p.name}}</td>
+              <td>{{p.description}}</td>
+              <td>{{p.date_release}}</td>
+              <td>{{p.date_revision}}</td>
+              <td>
+                <a class="options-btn" onclick="mostrarOpciones(this)"
+                  ><img src="../assets/svg/menu.svg" alt="menu"
+                /></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <footer>
+        <p>5 productos</p>
+        <select id="numeros">
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
+        </select>
+      </footer>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,118 @@
+<main class="container">
+  <div class="card">
+    <header>
+      <h1>Formulario de Registro</h1>
+    </header>
+    <form [formGroup]="registerForm">
+      <div class="item-form">
+        <label for="id">Id:</label>
+        <input
+          type="text"
+          id="id"
+          name="id"
+          required
+          minlength="3"
+          maxlength="10"
+          formControlName="id"
+        />
+        <div *ngIf="id.invalid && (id.dirty || id.touched)" class="alert">
+          <div *ngIf="id.errors?.['required']">El Id es requerido</div>
+          <div *ngIf="id.errors?.['minlength']">
+            El Id debe tener al menos 3 caracteres.
+          </div>
+          <div *ngIf="id.errors?.['maxlength']">
+            El Id no debe tener más de 10 caracteres.
+          </div>
+        </div>
+      </div>
+      <div class="item-form">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" formControlName="nombre" />
+        <div
+          *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)"
+          class="alert"
+        >
+          <div *ngIf="nombre.errors?.['required']">El Nombre es requerido</div>
+          <div *ngIf="nombre.errors?.['minlength']">
+            El Nombre debe tener al menos 5 caracteres.
+          </div>
+          <div *ngIf="nombre.errors?.['maxlength']">
+            El Nombre no debe tener más de 10 caracteres.
+          </div>
+        </div>
+      </div>
+      <div class="item-form">
+        <label for="descripcion">Descripción</label>
+        <input
+          type="text"
+          id="descripcion"
+          name="descripcion"
+          formControlName="descripcion"
+        />
+        <div
+          *ngIf="
+            descripcion.invalid && (descripcion.dirty || descripcion.touched)
+          "
+          class="alert"
+        >
+          <div *ngIf="descripcion.errors?.['required']">
+            La Descripción es requerida
+          </div>
+          <div *ngIf="descripcion.errors?.['minlength']">
+            La Descripción debe tener al menos 10 caracteres.
+          </div>
+          <div *ngIf="descripcion.errors?.['maxlength']">
+            La Descripción no debe tener más de 200 caracteres.
+          </div>
+        </div>
+      </div>
+      <div class="item-form">
+        <label for="logo">Logo</label>
+        <input
+          type="text"
+          id="logo"
+          name="logo"
+          required
+          formControlName="logo"
+        />
+        <div *ngIf="logo.invalid && (logo.dirty || logo.touched)" class="alert">
+          <div *ngIf="logo.errors?.['required']">El Logo es requerido</div>
+        </div>
+      </div>
+      <div class="item-form">
+        <label for="fechaDeLiberacion">Fecha Liberación</label>
+        <input
+          type="date"
+          id="fechaDeLiberacion"
+          name="fechaDeLiberacion"
+          formControlName="fechaLiberacion"
+        />
+        <div
+          *ngIf="fechaLiberacion.invalid && (fechaLiberacion.dirty || fechaLiberacion.touched)"
+          class="alert"
+        >
+          <div *ngIf="fechaLiberacion.errors?.['required']">La Fecha de Liberación es requerido</div>
+        </div>
+      </div>
+      <div class="item-form">
+        <label for="fechaDeRevision">Fecha revisión</label>
+        <input
+          type="date"
+          id="fechaDeRevision"
+          name="fechaDeRevision"
+          formControlName="fechaRevision"
+        />
+        <div
+          *ngIf="fechaRevision.invalid && (fechaRevision.dirty || fechaRevision.touched)"
+          class="alert"
+        >
+          <div *ngIf="fechaRevision.errors?.['required']">La Fecha de Revisión es requerido</div>
+        </div>
+      </div>
+      <div class="footer-form">
+        <button type="button" (click)="limpiarFormulario()">Reiniciar</button>
+        <button type="submit" (click)="submitForm()">Agregar</button>
+      </div>
+    </form>
+  </div>
+</main>

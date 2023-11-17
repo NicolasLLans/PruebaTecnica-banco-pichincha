@@ -1,0 +1,6 @@
+header{
+      display: grid;
+      place-content: center;
+      min-height: 120px;
+      background-color: #fff;   
+}

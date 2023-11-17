@@ -1,0 +1,60 @@
+.container {
+  margin-top: 100px;
+  display: grid;
+  place-content: center;
+}
+
+.card {
+  background-color: #fff;
+  max-width: 800px;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  padding: 1rem 3rem;
+}
+
+header {
+  border-bottom: 1px solid #000;
+  width: 100%;
+}
+
+form .item-form {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  gap: 10px;
+}
+
+form .item-form label {
+  font-weight: 500;
+}
+
+form .item-form input {
+  height: 14px;
+  padding: 1rem;
+  border-radius: 5px;
+  width: 300px;
+}
+
+form .footer-form {
+  width: 100%;
+}
+
+form .footer-form button {
+  margin: 2rem;
+}
+
+@media (max-width: 477px) {
+  form .footer-form button {
+    margin: 1rem;
+  }
+
+  .container {
+      margin-top: 50px;
+    }
+}

@@ -1,1 +1,34 @@
 /* You can add global styles to this file, and also import other style files */
+html {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+body {
+  background-color: rgb(240, 240, 240);
+}
+button {
+  color: #000;
+  background-color: rgb(255 221 0);
+  border: none;
+  border-radius: 5px;
+  padding: 18px 28px;
+  font-weight: 600;
+  margin-left: 1rem;
+}
+button:hover {
+  color: rgb(255 221 0);
+  background-color: #000;
+  font-weight: 700;
+}
+/* validator style*/
+.ng-valid:not(form).ng-touched {
+  border: 1px solid #42A948;
+}
+
+.ng-invalid:not(form).ng-touched {
+  border: 2px solid #A94442;
+}
+
+.alert{
+  color: #A94442;
+  font-size: 12px;
+}
