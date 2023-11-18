@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -11,7 +11,12 @@ export class ProductListComponent implements OnInit {
   product: any;
   filterValue = '';
   recordsPerPage = 5;
-  constructor(private productService: ProductService, private router: Router) {}
+  menuStates: boolean[] = [];
+  constructor(
+    private productService: ProductService,
+    private router: Router,
+    private renderer: Renderer2
+  ) {}
 
   ngOnInit(): void {
     this.productService.getData().subscribe({
@@ -37,5 +42,9 @@ export class ProductListComponent implements OnInit {
 
   changeRecordsPerPage(event: any) {
     this.recordsPerPage = +event.target.value;
+  }
+
+  mostrarOpciones(index: number): void {
+    this.menuStates[index] = !this.menuStates[index];
   }
 }

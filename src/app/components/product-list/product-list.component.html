@@ -25,7 +25,7 @@
               <th></th>
             </tr>
           </thead>
-          <tbody *ngIf="product">
+          <tbody *ngIf="product && product.length > 0">
             <tr
               *ngFor="
                 let p of product.slice(0, recordsPerPage)
@@ -36,19 +36,23 @@
               <td><img [src]="p.logo" alt="logo" width="100px" /></td>
               <td>{{ p.name }}</td>
               <td>{{ p.description }}</td>
-              <td>{{ p.date_release }}</td>
-              <td>{{ p.date_revision }}</td>
+              <td>{{ p.date_release | date:'dd/MM/yyyy'}}</td>
+              <td>{{ p.date_revision| date:'dd/MM/yyyy' }}</td>
               <td>
-                <a class="options-btn" onclick="mostrarOpciones(this)"
+                <a class="options-btn" (click)="mostrarOpciones(i)"
                   ><img src="../assets/svg/menu.svg" alt="menu"
                 /></a>
+                <div class="dropdown-menu" id="opcionesMenu" [style.display]="menuStates[i] ? 'block' : 'none'">
+                  <a href="#">Editar</a>
+                  <a href="#">Eliminar</a>
+              </div>
               </td>
             </tr>
           </tbody>
         </table>
       </section>
       <footer>
-        <p>{{ product.length }} productos</p>
+        <p *ngIf="product && product.length > 0">{{product.length}} Resultados</p>
         <select id="numeros" (change)="changeRecordsPerPage($event)">
           <option value="5" [selected]="recordsPerPage === 5">5</option>
           <option value="10" [selected]="recordsPerPage === 10">10</option>

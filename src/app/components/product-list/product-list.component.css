@@ -62,6 +62,31 @@ td img {
   text-align: center;
   border-radius: 5px;
 }
+
+/* Ocultar el menú por defecto */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  right: 170px;
+  background-color: #f9f9f9;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #333;
+}
+
+.dropdown-menu a:hover {
+  background-color: #ddd;
+}
+
+.options-btn {
+  cursor: pointer;
+}
 /* footer */
 main .container footer {
   display: flex;
